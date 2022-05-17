@@ -6,7 +6,7 @@ Repository for Documents and code pertaining to the Bee Environmental Project.
 The goal of the Gov/REN team is to coordinate engagement with the Federal Government and Educational Institutions.
 
 # Gov/REN Team Members
-Dennis O'Connel - APIary co-lead - Yahoo! - denniso@yahooinc.com
+Dennis O'Connel - APIary co-lead - Yahoo! - denniscoconnell@gmail.com
 Erik Erlandson - APIary co-lead - Red Hat - eerlands@redhat.com
 Ryan Coffee - Stanford/SLAC
 Leo Hoarty - Sweet Vinyl
