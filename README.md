@@ -1,5 +1,8 @@
 # APIary
-Bee project initial repository
+Bee project initial repository.  
+
+![plot](./images/img_0002.jpg)
+Image courtesy Grace Coffee
 
 ```https://community.hiveeyes.org/t/queen-piping-visualization-and-analysis/461```
 
