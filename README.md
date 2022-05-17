@@ -1,9 +1,24 @@
-# APIary
-Bee project initial repository.  
-
 ![plot](./images/img_0002.jpg)
 Image courtesy Grace Coffee
+# APIary/Bee project repository.  
+Repository for Documents and code pertaining to the Bee Environmental Project.
 
+The goal of the Gov/REN team is to coordinate engagement with the Federal Government and Educational Institutions.
+
+# Gov/REN Team Members
+Dennis O'Connel - APIary co-lead - Yahoo! - denniso@yahooinc.com
+Erik Erlandson - APIary co-lead - Red Hat - eerlands@redhat.com
+Ryan Coffee - Stanford/SLAC
+Leo Hoarty - Sweet Vinyl
+Bill Wright - Red Hat
+
+For questions, or to be added (or removed) from the team, please contact either Dennis or Erik.  
+
+# Meetings  
+
+Meetings are bi-weekly on Thursdays at noon.
+
+# links of interest
 ```https://community.hiveeyes.org/t/queen-piping-visualization-and-analysis/461```
 
 ```doi: 10.1126/science.abj8369```
