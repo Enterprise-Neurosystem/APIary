@@ -18,6 +18,15 @@ For questions, or to be added (or removed) from the team, please contact either 
 
 Meetings are bi-weekly on Thursdays at noon.
 
+# Spectrograms
+
+![plot](./figs/tooting.png)
+Tooting
+
+![plot](./figs/quacking.png)
+Quacking
+
+
 # links of interest
 ```https://community.hiveeyes.org/t/queen-piping-visualization-and-analysis/461```
 
