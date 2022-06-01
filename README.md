@@ -1,7 +1,10 @@
-![plot](./images/img_0002.jpg)
-Image courtesy Grace Coffee
+![plot](./figs/logo-bee.png)
 # APIary/Bee project repository.  
 Repository for Documents and code pertaining to the Bee Environmental Project.
+
+
+![plot](./images/img_0002.jpg)
+Image courtesy Grace Coffee
 
 The goal of the Gov/REN team is to coordinate engagement with the Federal Government and Educational Institutions.
 
