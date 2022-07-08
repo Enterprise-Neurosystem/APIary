@@ -23,6 +23,9 @@ Meetings are bi-weekly on Thursdays at noon.
 
 # Spectrograms
 
+![plot](./figs/quick_hive2-220625_004--eq.png)
+Quick spectrogram from Ryan Hive 2, Leo prototype microphone-0.  Seems the *information* dies out in the vicinity of 10 kHz.  Our ultrasonic hypothesis is very likely overkill.
+
 ![plot](./figs/tooting.png)
 Tooting
 
