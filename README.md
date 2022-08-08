@@ -33,7 +33,13 @@ Tooting
 Quacking
 
 
+
+Connect with Don DuRouseau (drdurous@uak.edu) regarding inducing a calm state in bees using the piezos as speakers in the hive.
+Don was at GPN22 talking to me about brain waves and phase coherences.
+Connect "the Dons"--DuRouseau and ALvarez--on the hive control.  
+
 # links of interest
+
 ```https://community.hiveeyes.org/t/queen-piping-visualization-and-analysis/461```
 
 ```doi: 10.1126/science.abj8369```

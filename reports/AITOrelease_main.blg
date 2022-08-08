@@ -1,0 +1,51 @@
+This is BibTeX, Version 0.99d (TeX Live 2019/Debian)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: AITOrelease_main.aux
+The style file: unsrt.bst
+Database file #1: AITOrelease.bib
+Database file #2: bibfiles/ml.bib
+Database file #3: bibfiles/satelliteImaging.bib
+Database file #4: bibfiles/bees.bib
+Warning--empty journal in GPT2018
+You've used 11 entries,
+            1791 wiz_defined-function locations,
+            521 strings with 7336 characters,
+and the built_in function-call counts, 3179 in all, are:
+= -- 159
+> -- 381
+< -- 0
++ -- 131
+- -- 120
+* -- 306
+:= -- 622
+add.period$ -- 32
+call.type$ -- 11
+change.case$ -- 11
+chr.to.int$ -- 0
+cite$ -- 12
+duplicate$ -- 85
+empty$ -- 195
+format.name$ -- 120
+if$ -- 616
+int.to.chr$ -- 0
+int.to.str$ -- 11
+missing$ -- 9
+newline$ -- 57
+num.names$ -- 11
+pop$ -- 29
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 0
+skip$ -- 37
+stack$ -- 0
+substring$ -- 69
+swap$ -- 10
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 0
+warning$ -- 1
+while$ -- 14
+width$ -- 13
+write$ -- 116
+(There was 1 warning)
