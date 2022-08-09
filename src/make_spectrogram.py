@@ -8,37 +8,63 @@ import wave
 
 def main():
     if len(sys.argv)<3:
-        print("syntax:./src/make_spectrogram.py <path/file.WAV> <'bee'|'server'>")
+        print("syntax:./src/make_spectrogram.py <path/file.WAV> <'bee'|'server'|'todd'>")
     fname = sys.argv[1]
     nsamples = 1<<12
     nfolds = 1<<14
     scale = 1<<12
     flim = 12
-        if sys.argv[2]=='bee':
-            nsamples = 1<<14
-            nfolds = 1<<12
-            scale = 1<<10
-        elif sys.argv[2]=='server':
-            nsamples = 1<<12
-            nfolds = 1<<14
-            scale = 1<<12
+    if sys.argv[2]=='bee':
+        nsamples = 1<<14
+        nfolds = 1<<12
+        scale = 1<<10
+    elif sys.argv[2]=='server':
+        nsamples = 1<<12
+        nfolds = 1<<14
+        scale = 1<<12
+    elif sys.argv[2]=='todd':
+        nsamples = 1<<14
+        nfolds = 1<<14
+        scale = 1<<10
 
+    P = (1<<flim)>>2 # setting to 1/8 of frequency limits
+    P_offset = 0
+    P_filt = np.array([0.5 * (1 - np.cos(2*np.pi * x / P)) for x in range(P)])
             
     dt = np.dtype(np.int16).newbyteorder('<')
-    data = []
+    data = {} 
+    filtdata = {} 
+    nchans = int(1)
     with wave.open(fname,'r') as f:
         print(f.getparams())
-        if f.getnchannels()>1:
-            print('Ahhh, processing more than one channel!  Returning!!')
-            f.close()
-            return
         samplewidth = f.getsampwidth()
         totframes = f.getnframes()
-        while f.tell()<min(totframes - nsamples*samplewidth,nsamples*nfolds*samplewidth):
-            tmp = np.frombuffer(f.readframes(nsamples*samplewidth),dtype=dt)
-            data += [np.abs(dct(np.concatenate((tmp,np.flip(tmp,axis=0))),type=2,axis=0)[:1<<flim:2])//scale]
-            #data += [np.abs(dct(np.concatenate((tmp,np.flip(tmp,axis=0))),type=2,axis=0)[::2])//scale]
-    np.savetxt('%s.sspect'%(fname),np.array(data).T,fmt='%i',header='remember for %s, highest frequency is %i\% of the 96kHz (only showing 2**%i of 2**%i samples)'%(sys.argv[2],int(100*float(flim)/float(nsamples)),flim,nsamples) )
+        nchans = f.getnchannels()
+        for c in range(nchans):
+            data['ch%i'%c] = []
+            filtdata['ch%i'%c] = []
+        while f.tell()<min(totframes - nsamples*samplewidth*nchans,nchans*nsamples*nfolds*samplewidth):
+            tmp = np.frombuffer(f.readframes(nsamples*samplewidth*nchans),dtype=dt)
+            for c in range(nchans):
+                data['ch%i'%c] += [np.abs(dct(np.concatenate((tmp[c::nchans],np.flip(tmp[c::nchans],axis=0))),type=2,axis=0)[:1<<flim:2])//scale]
+                cepstrum = dct(np.concatenate((data['ch%i'%c][-1],np.flip(data['ch%i'%c][-1]))),axis=0,type=2)
+                cepstrum[P_offset:P_offset+2*P:2] *= P_filt
+                cepstrum[P_offset+2*P:] *= 0.0
+                cepstrum[:P_offset] *= 0.0
+                back = dct(cepstrum,type=3,axis=0).real[:1<<flim]//scale
+                back *= (back>0)
+                back += 1
+                thresh = 14
+                width = 1 
+                #filtdata['ch%i'%c] += [np.log2(back)]
+                filtdata['ch%i'%c] += [(1+np.tanh((np.log2(back)-thresh)/width))/2]
+                #filtdata['ch%i'%c] += [np.ones(back.shape)*(np.log2(back)>thresh)]
+                #filtdata['ch%i'%c] += [np.tanh((back-thresh)/width)]
+                
+
+    for k in data.keys():
+        np.savetxt('%s.%s.sspect'%(fname,k),np.array(data[k]).T,fmt='%i',header='remember for %s, highest frequency is %i percent of the 96kHz (only showing 2**%i of 2**%i samples)'%(sys.argv[2],int(100*float(flim)/float(nsamples)),flim,np.log2(nsamples)) )
+        np.savetxt('%s.%s.sspect_filt'%(fname,k),np.array(filtdata[k]).T,fmt='%.1f',header='remember for %s, highest frequency is %i percent of the 96kHz (only showing 2**%i of 2**%i samples)'%(sys.argv[2],int(100*float(flim)/float(nsamples)),flim,np.log2(nsamples)) )
     return
 
     '''

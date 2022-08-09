@@ -5,6 +5,13 @@
 \newblock Undp: Sustainable development goals, 2015.
 \newblock url: https://www.undp.org/sustainable-development-goals.
 
+\bibitem{YaraGlaciers}
+Yara Mohajerani, Seongsu Jeong, Bernd Scheuchl, Isabella Velicogna, Eric
+  Rignot, and Pietro Milillo.
+\newblock Automatic delineation of glacier grounding lines in differential
+  interferometric synthetic-aperture radar data using deep learning.
+\newblock {\em Scientific Reports}, 11(1):4992, Mar 2021.
+
 \bibitem{TomasBeaches}
 Tomás Acuña-Ruz, Diego Uribe, Richard Taylor, Lucas Amézquita,
   María~Cristina Guzmán, Javier Merrill, Paula Martínez, Leandro Voisin, and
@@ -12,6 +19,23 @@ Tomás Acuña-Ruz, Diego Uribe, Richard Taylor, Lucas Amézquita,
 \newblock Anthropogenic marine debris over beaches: Spectral characterization
   for remote sensing applications.
 \newblock {\em Remote Sensing of Environment}, 217:309--322, 2018.
+
+\bibitem{GlobalCO2}
+Zhao-Cheng Zeng, Liping Lei, Kimberly Strong, Dylan B.~A. Jones, Lijie Guo, Min
+  Liu, Feng Deng, Nicholas~M. Deutscher, Manvendra~K. Dubey, David W.~T.
+  Griffith, Frank Hase, Bradley Henderson, Rigel Kivi, Rodica Lindenmaier,
+  Isamu Morino, Justus Notholt, Hirofumi Ohyama, Christof Petri, Ralf Sussmann,
+  Voltaire~A. Velazco, Paul~O. Wennberg, and Hui Lin.
+\newblock Global land mapping of satellite-observed co2 total columns using
+  spatio-temporal geostatistics.
+\newblock {\em International Journal of Digital Earth}, 10(4):426--456, 2017.
+
+\bibitem{SurfaceWater}
+Essam Sharaf~El Din, Yun Zhang, and Alaeldin Suliman.
+\newblock Mapping concentrations of surface water quality parameters using a
+  novel remote sensing and artificial intelligence framework.
+\newblock {\em International Journal of Remote Sensing}, 38(4):1023--1042,
+  2017.
 
 \bibitem{NeonicsOnBees}
 Muhammad~Shoaib Saleem, Zachary~Y. Huang, and Meghan~O. Milbrath.
@@ -25,23 +49,6 @@ John~W. Crowley, Jerry~X. Mitrovica, Richard~C. Bailey, Mark~E. Tamisiea, and
 \newblock Land water storage within the congo basin inferred from grace
   satellite gravity data.
 \newblock {\em Geophysical Research Letters}, 33(19), 2006.
-
-\bibitem{SurfaceWater}
-Essam Sharaf~El Din, Yun Zhang, and Alaeldin Suliman.
-\newblock Mapping concentrations of surface water quality parameters using a
-  novel remote sensing and artificial intelligence framework.
-\newblock {\em International Journal of Remote Sensing}, 38(4):1023--1042,
-  2017.
-
-\bibitem{GlobalCO2}
-Zhao-Cheng Zeng, Liping Lei, Kimberly Strong, Dylan B.~A. Jones, Lijie Guo, Min
-  Liu, Feng Deng, Nicholas~M. Deutscher, Manvendra~K. Dubey, David W.~T.
-  Griffith, Frank Hase, Bradley Henderson, Rigel Kivi, Rodica Lindenmaier,
-  Isamu Morino, Justus Notholt, Hirofumi Ohyama, Christof Petri, Ralf Sussmann,
-  Voltaire~A. Velazco, Paul~O. Wennberg, and Hui Lin.
-\newblock Global land mapping of satellite-observed co2 total columns using
-  spatio-temporal geostatistics.
-\newblock {\em International Journal of Digital Earth}, 10(4):426--456, 2017.
 
 \bibitem{Fukami2022}
 Leslie~E. Decker, Priscilla~A. San~Juan, Magdalena~L. Warren, Cory~E.
