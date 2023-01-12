@@ -1,7 +1,7 @@
 \begin{thebibliography}{10}
 
 \bibitem{SDGs}
-'United Nations~Development Programme'.
+United Nations~Development Programme.
 \newblock Undp: Sustainable development goals, 2015.
 \newblock url: https://www.undp.org/sustainable-development-goals.
 
@@ -49,6 +49,14 @@ John~W. Crowley, Jerry~X. Mitrovica, Richard~C. Bailey, Mark~E. Tamisiea, and
 \newblock Land water storage within the congo basin inferred from grace
   satellite gravity data.
 \newblock {\em Geophysical Research Letters}, 33(19), 2006.
+
+\bibitem{MethaneEmission2022}
+Joannes~D. Maasakkers, Daniel~J. Varon, Aldís Elfarsdóttir, Jason McKeever,
+  Dylan Jervis, Gourav Mahapatra, Sudhanshu Pandey, Alba Lorente, Tobias
+  Borsdorff, Lodewijck~R. Foorthuis, Berend~J. Schuit, Paul Tol, Tim~A. van
+  Kempen, Richard van Hees, and Ilse Aben.
+\newblock Using satellites to uncover large methane emissions from landfills.
+\newblock {\em Science Advances}, 8(32):eabn9683, 2022.
 
 \bibitem{Fukami2022}
 Leslie~E. Decker, Priscilla~A. San~Juan, Magdalena~L. Warren, Cory~E.

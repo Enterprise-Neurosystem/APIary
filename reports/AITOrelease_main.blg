@@ -7,45 +7,45 @@ Database file #2: bibfiles/ml.bib
 Database file #3: bibfiles/satelliteImaging.bib
 Database file #4: bibfiles/bees.bib
 Warning--empty journal in GPT2018
-You've used 12 entries,
+You've used 13 entries,
             1791 wiz_defined-function locations,
-            529 strings with 7633 characters,
-and the built_in function-call counts, 3433 in all, are:
-= -- 176
-> -- 401
+            536 strings with 8061 characters,
+and the built_in function-call counts, 3838 in all, are:
+= -- 197
+> -- 448
 < -- 0
-+ -- 138
-- -- 126
-* -- 332
-:= -- 667
-add.period$ -- 35
-call.type$ -- 12
-change.case$ -- 12
++ -- 154
+- -- 141
+* -- 378
+:= -- 743
+add.period$ -- 38
+call.type$ -- 13
+change.case$ -- 13
 chr.to.int$ -- 0
-cite$ -- 13
-duplicate$ -- 94
-empty$ -- 216
-format.name$ -- 126
-if$ -- 668
+cite$ -- 14
+duplicate$ -- 103
+empty$ -- 241
+format.name$ -- 141
+if$ -- 746
 int.to.chr$ -- 0
-int.to.str$ -- 12
-missing$ -- 10
-newline$ -- 62
-num.names$ -- 12
-pop$ -- 30
+int.to.str$ -- 13
+missing$ -- 11
+newline$ -- 67
+num.names$ -- 13
+pop$ -- 31
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 40
+skip$ -- 43
 stack$ -- 0
-substring$ -- 81
-swap$ -- 11
+substring$ -- 105
+swap$ -- 12
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
 warning$ -- 1
-while$ -- 16
-width$ -- 14
-write$ -- 127
+while$ -- 18
+width$ -- 15
+write$ -- 138
 (There was 1 warning)
