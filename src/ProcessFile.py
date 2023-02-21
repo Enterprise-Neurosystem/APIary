@@ -48,22 +48,23 @@ def processFFT(params):
                 S = rfft(np.concatenate( (chunk[c::params.nchans],np.flip(chunk[c::params.nchans],axis=0)) ).astype(int), axis=0 ) 
                 params.freqrange = params.samplerate//2
                 params.tstep = 1./float(params.samplerate)
-                params.data['ch%02i'%c] += [ np.log2(np.abs(S[:params.flim])+1.).astype(float) ]
-                cepstrum = rfft(np.concatenate((params.data['ch%02i'%c][-1],np.flip(params.data['ch%02i'%c][-1]))),axis=0)
+                params.data['ch%02i'%c] += [ np.array([ v>>14 for v in np.abs(S[:params.flim]).astype(int) ]) ]
+                #params.data['ch%02i'%c] += [ np.log2(np.abs(S[:params.flim])+1.).astype(float) ]
+                cepstrum = rfft(np.concatenate((params.data['ch%02i'%c][-1],np.flip(params.data['ch%02i'%c][-1]))).astype(float),axis=0)
+                derivcep = np.copy(cepstrum)
                 cepstrum[:params.P] *= params.Pfilt
                 cepstrum[params.P:] = 0
-                derivcep = np.copy(cepstrum)
+                derivcep[:params.P] *= params.Pfilt
                 derivcep[:params.P] *= 1j*np.arange(params.P)
                 back = irfft(cepstrum,axis=0).real[:params.flim]
                 dback = irfft(derivcep,axis=0).real[:params.flim]
                 params.filtdata['ch%02i'%c] += [dback*back]
                 edges,slopes,nedges = scanedges(params,params.filtdata['ch%02i'%c][-1])
-                params.bindata['ch%02i'%c] += [np.zeros(params.noutbins,dtype=int)]
-                for e in edges:
+                params.bindata['ch%02i'%c] += [np.zeros(params.flim,dtype=int)]
+                for i,e in enumerate(edges):
                     e >>= params.expand
-                    if e< params.noutbins:
-                        params.bindata['ch%02i'%c][-1][e] += 1 
-                #params.bindata['ch%02i'%c] += [np.histogram(edges,bins=params.outbins)[0]]
+                    if e< params.flim:
+                        params.bindata['ch%02i'%c][-1][e] = int(np.log2(-slopes[i])-11.) #slopes are negative, want most significant bit. (e.g. log scale)
     for k in params.data.keys():
         oname = '%s.%s.log2spect'%(params.fname,k)
         np.savetxt(oname,

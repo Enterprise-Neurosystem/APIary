@@ -11,7 +11,7 @@ from ProcessFile import processFFT
 def main(subject,fnames):
     paramslist = [Params(fname,subject) for fname in fnames]
     _ = [p.setnfolds(1<<8).setFreqLim(1<<12).setPfilt(1<<8) for p in paramslist]
-    _ = [p.setthresh(1<<10).setexpand(1<<2).setoutbins(1<<10) for p in paramslist]
+    _ = [p.setthresh(1<<14).setexpand(2).setoutbins(1<<10) for p in paramslist]
         
 
     print('CPU cores:\t%i'%mp.cpu_count())

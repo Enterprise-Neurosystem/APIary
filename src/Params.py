@@ -8,7 +8,7 @@ import time
 class Params:
     def __init__(self,fname,s):
         self.rng = np.random.default_rng( time.time_ns()%(1<<8) )
-        self.logicthresh = 1<<10
+        self.logicthresh = (1<<4) 
         self.fname = fname
         self.setsubject(s)
         self.flim = 1<<10
@@ -50,6 +50,7 @@ class Params:
     def setthresh(self,n):
         self.logicthresh = n
         return self
+
     def getsubject(self):
         return self.subject
 
