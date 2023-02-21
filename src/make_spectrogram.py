@@ -1,117 +1,24 @@
 #!/usr/bin/python3
 
-import numpy as np
-from scipy.io import wavfile
-from scipy.fft import dct,fft,ifft
 import sys
-import wave
 import multiprocessing as mp
+from Params import Params
+from ProcessFile import processFFT
 
 
-
-def processfile(params):
-    params.setTid()
-    with wave.open(params.fname,'r') as f:
-        print(f.getparams())
-        params.samplewidth = f.getsampwidth()
-        params.totframes = f.getnframes()
-        params.nchans = f.getnchannels()
-        for c in range(params.nchans):
-            params.data['ch%i'%c] = []
-            params.filtdata['ch%i'%c] = []
-        print('samplewidth = %i'%params.samplewidth)
-        params.sizeofframe = params.samplewidth * params.nsamples * params.nchans
-        while f.tell()<min(params.totframes - params.sizeofframe , params.nfolds*params.sizeofframe):
-            tmp = np.frombuffer(f.readframes(params.nsamples*params.samplewidth*params.nchans),dtype=params.dt)
-            for c in range(params.nchans):
-                params.data['ch%i'%c] += [np.log2(np.abs(dct(np.concatenate((tmp[c::params.nchans],np.flip(tmp[c::params.nchans],axis=0))),type=2,axis=0)[:1<<params.flim:2])/params.scale)]
-                cepstrum = dct(np.concatenate((params.data['ch%i'%c][-1],np.flip(params.data['ch%i'%c][-1]))),axis=0,type=2)
-                cepstrum[params.Poffset:params.Poffset+2*params.P:2] *= params.Pfilt
-                cepstrum[params.Poffset+2*params.P:] *= 0.0
-                cepstrum[:params.Poffset] *= 0.0
-                back = dct(cepstrum,type=3,axis=0).real[:1<<(params.flim-1)]/params.scale
-                back *= (back>0)
-                params.filtdata['ch%i'%c] += [back]
-                #params.filtdata['ch%i'%c] += [(1+np.tanh((back-params.thresh)/params.width))/2]
-    for k in params.data.keys():
-        oname = '%s.%s.sspect'%(params.fname,k)
-        np.savetxt(oname,
-                np.array(params.data[k]).T,
-                fmt='%i',
-                header='remember for %s, highest frequency is %i percent of the 96kHz (only showing 2**%i of 2**%i samples)'%(params.subject,int(100*float(1<<params.flim)/float(params.nsamples)),1<<params.flim,np.log2(params.nsamples)) )
-        print('finished writing:\t%s\tprocName:\t%s'%(oname,params.tid))
-        
-        oname = '%s.%s.sspect_filt'%(params.fname,k)
-        np.savetxt(oname,
-                np.array(params.filtdata[k]).T,
-                fmt='%.1f',
-                header='remember for %s, highest frequency is %i percent of the 96kHz (only showing 2**%i of 2**%i samples)'%(params.subject,int(100*float(1<<params.flim)/float(params.nsamples)),1<<params.flim,np.log2(params.nsamples)) )
-        print('finished writing:\t%s\tprocName:\t%s'%(oname,params.tid))
-    return params
-
-class Params:
-    def __init__(self,fname,s):
-        self.fname = fname
-        self.setsubject(s)
-        self.flim = 10
-        self.tid = 'initState' 
-        self.nchans = 1
-        self.data = {}
-        self.filtdata = {}
-        self.dt = np.dtype(np.int16).newbyteorder('<')
-        self.Poffset = 0
-        self.thresh = 14
-        self.width =1
-        self.sizeofframe=((int(1<<16)<<1)<<8) # 16 bits deep, 2 channels, 8 timesamples per step
-
-    def initforsubject(self):
-        if self.subject == 'bee':
-            self.nsamples = 1<<14
-            self.nfolds = 1<<12
-            self.scale = 1<<10
-        elif self.subject == 'todd':
-            self.nsamples = 1<<12
-            self.nfolds = 1<<14
-            self.scale = 1<<10
-        elif self.subject == 'server':
-            self.nsamples = 1<<12
-            self.nfolds = 1<<14
-            self.scale = 1<<12
-        return self
-
-    def setsubject(self,s):
-        self.subject = s
-        self.initforsubject()
-        return self
-    def getsubject(self):
-        return self.subject
-    def setP(self,frac): #frac is the power of 2 in (1/2)**frac
-        self.P = (1<<self.flim)>>frac
-        return self
-    def setFreqLim(self,f):
-        self.flim = f
-        return self
-    def setPfilt(self):
-        print(self.P)
-        self.Pfilt = np.array([0.5 * (1 - np.cos(2*np.pi * x / self.P)) for x in range(self.P)])
-        return self
-    def setPoffset(self,p):
-        self.Poffset = p
-        return self
-    def setTid(self):
-        self.tid = '%s'%mp.current_process().name
-        return self
 
 
 def main(subject,fnames):
     paramslist = [Params(fname,subject) for fname in fnames]
-    _ = [p.setFreqLim(11).setP(1).setPoffset(0).setPfilt() for p in paramslist]
+    _ = [p.setnfolds(1<<8).setFreqLim(1<<12).setPfilt(1<<8) for p in paramslist]
+    _ = [p.setthresh(1<<10).setexpand(1<<2).setoutbins(1<<10) for p in paramslist]
+        
 
     print('CPU cores:\t%i'%mp.cpu_count())
     _ = [print(p.fname) for p in paramslist]
 
     with mp.Pool(processes=len(paramslist)) as pool:
-        pool.map(processfile,paramslist)
+        pool.map(processFFT,paramslist)
     return
 
 if __name__ == '__main__':
