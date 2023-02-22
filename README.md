@@ -3,6 +3,18 @@
 Repository for Documents and code pertaining to the Bee Environmental Project.
 
 
+# Data rate
+![plot](./figs/Audio_192k16b--Half_Moon_Bay--Mic01Parallel--20221112.wav.quantVspect_0-600.png)
+![plot](./figs/Audio_192k16b--Half_Moon_Bay--Mic02Perpendicular--20221112.wav.quantVspect_0-600.png)
+
+91.2 MB/min/chan (1.52 MBps/chan) raw data
+76.8 kB/min/chan (1.28 kBps/chan) spectrum 1Hz resolution, 10bits amplitude, 1024Hz worth of 96kHz range.
+3.84 kB/min/chan (64 Bps/chan) quantized into 256 bins, 2bits amplitude, all proportional to activity in full range of 96kHz. 
+Roughly factor of 24k compression with quantization.
+
+
+
+
 ![plot](./images/img_0002.jpg)
 Image courtesy Grace Coffee
 

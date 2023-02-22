@@ -15,9 +15,13 @@ class Params:
         self.noutbins = 1<<10
         self.tid = 'initState' 
         self.nchans = 1
+        self.initstate = {}
         self.data = {}
         self.filtdata = {}
-        self.bindata = {}
+        self.edges = {}
+        self.slopes = {}
+        self.nedges = {}
+        self.addresses = {}
         self.dtype = np.dtype(np.int16).newbyteorder('<')
         self.Poffset = 0
         self.thresh = 14
@@ -26,9 +30,14 @@ class Params:
         self.sizeofframe=((int(1<<16)<<1)<<8) # 16 bits deep, 2 channels, 8 timesamples per step
         self.tstep = 0.000005208333333333333
         self.freqrange = self.samplerate//2
+        self.nfolds = 1<<10
 
     def initforsubject(self):
         if self.subject == 'bee':
+            self.nsamples = 1<<14
+            self.nfolds = 1<<12
+            self.scale = 1<<10
+        elif self.subject == 'hmb':
             self.nsamples = 1<<14
             self.nfolds = 1<<12
             self.scale = 1<<10
@@ -61,8 +70,6 @@ class Params:
         return self
 
     def setnfolds(self,n):
-        if n>self.nfolds:
-            reutrn
         self.nfolds = n
         return self
 
